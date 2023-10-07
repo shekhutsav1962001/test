@@ -40,7 +40,6 @@ exports.signIn = async (req, res) => {
 
     return res.json({ token });
   } catch (error) {
-    console.log(error);
     return res.json({ error: "Something went wrong" });
   }
 };
