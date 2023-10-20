@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
-var bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -17,8 +17,8 @@ userSchema.statics.hashPassword = function hashPassword(password) {
   return bcrypt.hashSync(password, 10);
 };
 
-userSchema.methods.isValid = function (hashedpassword) {
-  return bcrypt.compareSync(hashedpassword, this.password);
+userSchema.methods.isValid = function (userEnteredPassword) {
+  return bcrypt.compareSync(userEnteredPassword, this.password);
 };
 
 module.exports = mongoose.model("user", userSchema);
